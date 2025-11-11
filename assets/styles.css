@@ -1,0 +1,355 @@
+:root{
+      --pink:#F296BD;           /* fondo */
+      --yellow:#ffd465;         /* subrayado */
+      --btn:#afc4ff;            /* botón */
+      --ink:#121212;            /* texto oscuro */
+      --white:#fff;            /* blanco */
+      --green:#267F53;        /* verde */
+      --orange:#F5793B;         /* naranja */
+    }
+
+/* Carga de la tipografía local "Gulf Display" */
+@font-face {
+  font-family: "Gulf Display";
+  src: url("./gulfs-display-normal.ttf") format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+h1,h2,h3{
+  font-family: "Gulf Display";
+}
+
+h2 {
+  font-size: 3rem;
+    font-weight: 100;
+    line-height: 1;
+}
+
+p,a{
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+}
+
+img{
+  max-width:100%;
+  height:auto;
+  display:block;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+
+body{
+      margin:0;
+      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+      color:var(--ink);
+      background:var(--white);
+    }
+
+header {
+  z-index: 100;
+  position: relative;
+  margin-left: 2rem;
+    padding-top: 2rem;
+}
+
+ /* Logo arriba izquierda */
+    .brand{
+      display:flex;
+      flex-direction:column;
+      gap:.15rem;
+      line-height:1;
+      letter-spacing:.02em;
+      user-select:none;
+      width:max-content;
+    }
+    .brand .top{
+      font-family:"Gulf Display", system-ui;
+      font-size:clamp(45px, 3.8vw, 52px);
+      font-weight:400;
+      color:#fff;
+    }
+    
+    .brand .bottom{
+      font-family:"Gulf Display", system-ui;
+      font-size:clamp(16px, 2.2vw, 30px);
+      font-weight:400;
+      color:#fff;
+    }
+    .brand .heart{ color:#ff477e; }
+
+    @media screen and (min-width: 768px) {
+      .bottom{
+        font-size: 1.1rem!important;
+      }
+      
+    }
+
+    /* WhatsApp flotante arriba derecha */
+    .wa-fab{
+      position:absolute;
+      top: clamp(12px, 3vw, 28px);
+      right: clamp(12px, 3vw, 28px);
+      width:48px; height:48px;
+      border-radius:50%;
+      background:#fff;
+      display:grid; place-items:center;
+      transition:transform .15s ease, box-shadow .15s ease;
+    }
+    .wa-fab:hover{ transform:translateY(-1px); box-shadow:0 6px 14px rgba(0,0,0,.18); }
+    .wa-fab svg{ width:26px; height:26px; }
+
+
+.hero{
+      min-height:90svh; /* usa toda la pantalla, mobile-safe */
+      background:var(--pink);
+      display:grid;
+      grid-template-rows:auto 1fr auto;
+      padding: clamp(16px, 4vw, 40px);
+      position:relative;
+      overflow:hidden;
+      margin-top: -9rem;
+      z-index: 10;
+      padding-top: 9rem;
+    }
+
+   
+    /* Centro: titulares */
+    .hero-center{
+      place-items:center;
+      text-align:center;
+      padding-top: 4rem;
+
+    }
+    .headline{
+      font-family:"Gulf Display", system-ui;
+      color:#fff;
+      font-size: 4rem;
+      font-weight:400;
+      line-height:.95;
+      margin:0 0 .35em;
+      text-wrap:balance;
+    }
+    .sub{
+      display:inline-block;
+      font-family:"Covered By Your Grace", cursive;
+      font-weight:400;
+      font-size: 3rem;
+      letter-spacing:.02em;
+      line-height:1.1;
+      color:#fff;
+      position:relative;
+      padding:.08em;
+      z-index:0;
+    }
+    /* “resaltador” amarillo detrás del texto */
+    .sub::before{
+      content:"";
+      position:absolute;
+      inset:auto .15em .1em .15em;
+      height:.55em;
+      background:var(--yellow);
+      z-index:-1;
+      border-radius:.12em;
+    }
+
+    /* Botón */
+    .cta-wrap{ margin-top: clamp(5rem, 3vw, 28px); }
+
+    .cta{  
+      display:inline-flex;
+      align-items:center;
+      gap:.6rem;
+      padding:.9rem 1.4rem;
+      font-weight:800;
+      background-color:var(--btn);
+      color:#0f1730;
+      border:1px solid #0f1730;
+      border-radius:999px;
+      text-decoration:none;
+      box-shadow: inset 0 -3px rgba(0,0,0,.08);
+      transition: transform .1s ease, box-shadow .1s ease, filter .1s ease;
+    }
+    .cta svg{ width:13px; height:13px;margin-left: 2px; margin-top: 2px;}
+    .cta:hover{ transform:translateY(-1px); filter:brightness(1.04); }
+    .cta:active{ transform:translateY(0); }
+
+.cta-simple {
+  color: var(--ink);
+  font-size: 1.2rem;
+      text-decoration: none;
+    background-color: var(--yellow);
+    padding: .8rem 2rem;
+    border-radius: 100px;
+}
+
+.cta-simple::before {
+  content: "";
+  display: inline-block;       /* permite que tenga ancho/alto */
+  width: 20px;                 /* ajusta al tamaño deseado */
+  height: 20px;
+  margin-right: 0.6rem;        /* separación entre icono y texto */
+  vertical-align: middle;
+  background: url("images/flower-icon.png") no-repeat center center;
+  background-size: contain;
+  transition: transform 0.3s ease;  /* animación suave */
+}
+
+.cta-simple:hover::before {
+  transform: rotate(90deg);  /* rotación de 90 grados */
+}
+
+    .white{
+      background-color: var(--white);
+    }
+
+  .teaser{
+      display: flex;
+      flex-direction:column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+
+      p{
+        margin-bottom: 2rem;
+      }
+    }
+
+    @media screen and (min-width: 768px) {
+      .teaser{
+        flex-direction: row;    
+      } 
+      .teaser-image, .teaser-text{
+        flex:1;
+      }
+    }
+
+    .teaser-text{
+      margin: 2rem;
+    }
+    .teaser h2{
+      color: var(--green);
+      margin-bottom: 0;
+    }
+
+    .teaser-image{
+      border:2px solid var(--ink)
+    }
+
+    @media screen and (min-width: 768px) {
+      .teaser-image{
+        border:2px solid var(--ink);
+        border-bottom: none;
+    }
+    }
+
+
+    /* Footer espaciador blanco inferior (como en tu diseño) */
+    .hero-footer{
+      height: clamp(18px, 4vw, 36px);
+      background:var(--white);
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+      margin-inline: clamp(6px, 2vw, 14px);
+    }
+
+    /* Accesibilidad y preferencias */
+    @media (prefers-reduced-motion: reduce){
+      .cta, .wa-fab{ transition:none }
+      
+    }
+
+/* -----------------------------
+   Flower ticker (se mueve solo)
+   ----------------------------- */
+.flower-ticker{
+  background:var(--pink);
+  padding: 0.6rem 0;
+  overflow:hidden;
+  border-bottom: 2px solid var(--ink);
+   border-top: 2px solid var(--ink);
+}
+.ticker-viewport{
+  --speed: 18s; /* ajustar duración del recorrido */
+}
+.ticker-wrap{
+  display:flex;
+  width:200%; /* contiene dos bloques idénticos para bucle */
+  align-items:center;
+  animation: scroll-left var(--speed) linear infinite;
+}
+.ticker{
+  display:flex;
+  gap:4rem;
+  list-style:none;
+  margin:0;
+  padding:0 2rem;
+  align-items:center;
+}
+.ticker li{
+  display:flex;
+  align-items:center;
+  gap:.6rem;
+  white-space:nowrap;
+  font-weight:700;
+  color:var(--ink);
+  font-size:2rem;
+  font-family:"Gulf Display", system-ui;
+  font-weight: 100;
+  color: var(--white);
+}
+.flower-icon{
+  width:20px;
+  height:20px;
+  display:block;
+}
+
+@keyframes scroll-left{
+  from{ transform: translateX(0); }
+  to{ transform: translateX(-50%); }
+}
+
+/* pausa al poner el ratón encima */
+.flower-ticker:hover .ticker-wrap{ animation-play-state: paused; }
+
+/* accesibilidad: reduce motion */
+@media (prefers-reduced-motion: reduce){
+  .ticker-wrap{ animation: none; }
+}
+
+
+.presentation {
+  text-align: center;
+  max-width: 900px;
+  margin: auto;
+
+
+  h2{
+    font-size: 4rem;
+    margin: 0;
+  }
+  span{
+    position: relative;
+    display: inline-block; 
+  }
+
+  .name{
+    color: var(--orange);
+    z-index: 11;
+  }
+
+  .surname{
+    margin-top: -3rem;
+    z-index: 12;
+  }
+
+  img{
+    margin:auto;
+    margin-top: -7rem;
+    position: relative;
+    z-index: 10;
+  }
+}
+
+
