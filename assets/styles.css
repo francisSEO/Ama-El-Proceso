@@ -3,7 +3,7 @@
       --yellow:#ffd465;         /* subrayado */
       --btn:#afc4ff;            /* botón */
       --ink:#121212;            /* texto oscuro */
-      --white:#fff;            /* blanco */
+      --white:#f9f3f3;            /* blanco */
       --green:#267F53;        /* verde */
       --orange:#F5793B;         /* naranja */
     }
@@ -19,12 +19,14 @@
 
 h1,h2,h3{
   font-family: "Gulf Display";
+  font-weight: 100;
 }
 
 h2 {
   font-size: 3rem;
     font-weight: 100;
     line-height: 1;
+    margin-top: 0;
 }
 
 p,a{
@@ -108,7 +110,7 @@ header {
       display:grid; place-items:center;
       transition:transform .15s ease, box-shadow .15s ease;
     }
-    .wa-fab:hover{ transform:translateY(-1px); box-shadow:0 6px 14px rgba(0,0,0,.18); }
+    .wa-fab:hover{ transform:translateY(-1px); filter:brightness(1.04); box-shadow: 3px 3px 0px 0px #000000;}
     .wa-fab svg{ width:26px; height:26px; }
 
 
@@ -124,21 +126,27 @@ header {
       padding-top: 9rem;
     }
 
+    @media screen and (max-width: 768px) {
+      .hero{
+        min-height:77svh;   
+      } 
+    }
+
     .gradient-background {
   background: linear-gradient(241deg,var(--pink),var(--yellow));
   background-size: 120% 120%;
-  animation: gradient-animation 18s ease infinite;
+  animation: gradient-animation 8s ease infinite;
 }
 
 @keyframes gradient-animation {
   0% {
-    background-position: 0% 50%;
+    background-position: 0% 20%;
   }
   50% {
     background-position: 100% 50%;
   }
   100% {
-    background-position: 0% 50%;
+    background-position: 0% 70%;
   }
 }
 
@@ -211,6 +219,18 @@ header {
     background-color: var(--yellow);
     padding: .8rem 2rem;
     border-radius: 100px;
+    display: flex;
+    /* Esto centra verticalmente todos los elementos hijos */
+    align-items: center; 
+    
+    /* Opcional: Centrar horizontalmente */
+    justify-content: center;
+    width: max-content;
+    transition: transform .1s ease, box-shadow .1s ease, filter .1s ease;
+}
+
+.cta-simple:hover {
+  transform:translateY(-1px); filter:brightness(1.04); box-shadow: 5px 5px 0px 0px var(--green);
 }
 
 .cta-simple::before {
@@ -229,6 +249,13 @@ header {
   transform: rotate(90deg);  /* rotación de 90 grados */
 }
 
+
+    @media screen and (max-width: 768px) {
+      .cta-simple{
+        width: 100%;   
+      } 
+    }
+
     .white{
       background-color: var(--white);
     }
@@ -243,6 +270,10 @@ header {
       p{
         margin-bottom: 2rem;
       }
+
+      .blurry img {
+        filter: blur(3rem);
+      }
     }
 
     @media screen and (min-width: 768px) {
@@ -255,7 +286,7 @@ header {
     }
 
     .teaser-text{
-      margin: 2rem;
+      margin: 4rem 2rem;;
     }
     .teaser h2{
       color: var(--green);
@@ -263,13 +294,15 @@ header {
     }
 
     .teaser-image{
-      border:2px solid var(--ink)
+      border:2px solid var(--ink);
+      overflow: hidden;
     }
 
     @media screen and (min-width: 768px) {
       .teaser-image{
         border:2px solid var(--ink);
         border-bottom: none;
+        overflow: hidden;
     }
     }
 
@@ -350,7 +383,7 @@ header {
 
 .presentation {
   text-align: center;
-  max-width: 900px;
+  max-width: 500px;
   margin: auto;
 
 
@@ -371,14 +404,187 @@ header {
   .surname{
     margin-top: -3rem;
     z-index: 12;
+    color: var(--white);
+  }
+
+  .presentation-text p{
+    margin-bottom: 1.5rem;
   }
 
   img{
     margin:auto;
-    margin-top: -5rem;
+    margin-top: -4.4rem;
+    margin-bottom: 2rem;
     position: relative;
     z-index: 10;
+    width: 20vw;
+    border-radius: 16px;
   }
 }
 
+  @media screen and (max-width: 768px) {
+      .presentation img{
+        width: 50vw;
+    }
+    }
 
+.no-margin p {
+  margin: 0;
+}
+
+/* ========================================
+   FAQs - Preguntas Frecuentes (Acordeón)
+   ======================================== */
+.faqs {
+  padding: 4rem 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faqs h2 {
+  color: var(--green);
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+
+.faq-item {
+  margin-bottom: 1.5rem;
+  border: 2px solid var(--yellow);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+  transform:translateY(-1px); filter:brightness(1.04); box-shadow: 5px 5px 0px 0px var(--green);
+  border: 2px solid var(--green);
+}
+
+/* Botón acordeón */
+.faq-toggle {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  text-align: left;
+  font-family: inherit;
+  background-color: var(--yellow);
+}
+
+
+
+.faq-toggle h3 {
+  color: var(--green);
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* Icono +/- */
+.faq-icon {
+  color: var(--green);
+  font-size: 1.8rem;
+  font-weight: 300;
+  flex-shrink: 0;
+  margin-left: 1rem;
+  transition: transform 0.3s ease;
+}
+
+/* Cuando está abierto */
+.faq-toggle[aria-expanded="true"] .faq-icon {
+  transform: rotate(45deg);
+}
+
+/* Contenido colapsable */
+.faq-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.faq-toggle[aria-expanded="true"] + .faq-content {
+  max-height: 500px;
+  padding: 0 1.5rem 1.5rem 1.5rem;
+  border-color: var(--ink);
+}
+
+.faq-content p {
+  margin: 0;
+  color: var(--ink);
+  line-height: 1.6;
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+
+/* Responsive */
+@media screen and (min-width: 768px) {
+  .faqs {
+    padding: 5rem 3rem;
+  }
+
+  .faq-toggle {
+    padding: 2rem;
+  }
+
+  .faq-toggle h3 {
+    font-size: 1.3rem;
+  }
+
+  .faq-toggle[aria-expanded="true"] + .faq-content {
+    padding: 0 2rem 2rem 2rem;
+  }
+}
+
+/* Accesibilidad */
+.faq-toggle:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: -2px;
+}
+
+.footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  font-size: 0.9rem;
+  color: var(--ink);
+}
+
+
+.footer a {
+  color: var(--ink);
+  text-decoration: underline;
+  padding: .2rem;
+  border-radius: 16px;
+}
+
+
+.footer a::after {
+  background-color: var(--pink);
+  color: var(--ink);
+  text-decoration: none;
+}
+
+  .footer a::before {
+  content: "";
+  display: inline-block;       /* permite que tenga ancho/alto */
+  width: 20px;                 /* ajusta al tamaño deseado */
+  height: 20px;
+  margin-right: 0.6rem;        /* separación entre icono y texto */
+  vertical-align: middle;
+  background: url("images/flower-icon.png") no-repeat center center;
+  background-size: contain;
+  transition: transform 0.3s ease;  /* animación suave */
+}
+
+.footer a:hover {
+  text-decoration: none;
+}
+
+.footer a:hover::before {
+  transform: rotate(90deg);  /* rotación de 90 grados */
+}
+}
