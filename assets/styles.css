@@ -266,6 +266,7 @@ header {
       align-items: center;
       justify-content: center;
       gap: 1rem;
+      border-top:2px solid var(--ink);
 
       p{
         margin-bottom: 2rem;
@@ -294,13 +295,12 @@ header {
     }
 
     .teaser-image{
-      border:2px solid var(--ink);
       overflow: hidden;
     }
 
     @media screen and (min-width: 768px) {
       .teaser-image{
-        border:2px solid var(--ink);
+        border-left:2px solid var(--ink);
         border-bottom: none;
         overflow: hidden;
     }
@@ -385,6 +385,7 @@ header {
   text-align: center;
   max-width: 500px;
   margin: auto;
+  border-top: 0px;
 
 
   h2{
@@ -436,7 +437,7 @@ header {
    FAQs - Preguntas Frecuentes (Acordeón)
    ======================================== */
 .faqs {
-  padding: 4rem 2rem;
+  padding: 4rem 1rem;
   max-width: 800px;
   margin: 0 auto;
 }
