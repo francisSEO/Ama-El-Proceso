@@ -54,6 +54,14 @@ header {
     padding-top: 2rem;
 }
 
+      @media screen and (max-width: 768px) {
+      header{
+        margin-left: 1rem;
+        padding-top: 1rem;
+      }
+      
+    }
+
  /* Logo arriba izquierda */
     .brand{
       display:flex;
@@ -64,6 +72,9 @@ header {
       user-select:none;
       width:max-content;
     }
+
+
+
     .brand .top{
       font-family:"Gulf Display", system-ui;
       font-size:clamp(45px, 3.8vw, 52px);
@@ -103,7 +114,6 @@ header {
 
 .hero{
       min-height:90svh; /* usa toda la pantalla, mobile-safe */
-      background:var(--pink);
       display:grid;
       grid-template-rows:auto 1fr auto;
       padding: clamp(16px, 4vw, 40px);
@@ -113,6 +123,24 @@ header {
       z-index: 10;
       padding-top: 9rem;
     }
+
+    .gradient-background {
+  background: linear-gradient(241deg,var(--pink),var(--yellow));
+  background-size: 120% 120%;
+  animation: gradient-animation 18s ease infinite;
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
 
    
     /* Centro: titulares */
@@ -170,9 +198,10 @@ header {
       text-decoration:none;
       box-shadow: inset 0 -3px rgba(0,0,0,.08);
       transition: transform .1s ease, box-shadow .1s ease, filter .1s ease;
+      box-shadow: 2px 3px 0px 0px #000000;
     }
     .cta svg{ width:13px; height:13px;margin-left: 2px; margin-top: 2px;}
-    .cta:hover{ transform:translateY(-1px); filter:brightness(1.04); }
+    .cta:hover{ transform:translateY(-1px); filter:brightness(1.04); box-shadow: 5px 5px 0px 0px #000000;}
     .cta:active{ transform:translateY(0); }
 
 .cta-simple {
@@ -346,7 +375,7 @@ header {
 
   img{
     margin:auto;
-    margin-top: -7rem;
+    margin-top: -5rem;
     position: relative;
     z-index: 10;
   }
