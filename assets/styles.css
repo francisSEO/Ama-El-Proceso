@@ -124,6 +124,11 @@ header {
       margin-top: -9rem;
       z-index: 10;
       padding-top: 9rem;
+    
+      p{
+        font-size: 1.2rem;
+        color: #fff;
+      }
     }
 
     @media screen and (max-width: 768px) {
