@@ -1,5 +1,4 @@
 ---
-import "../assets/styles.css"
 import Topbar from "../components/Topbar.astro"
 import HeroHome from '../components/HeroHome.astro'
 import Teaser from "../components/Teaser.astro"
@@ -15,9 +14,10 @@ import Footer from "../components/Footer.astro"
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Ama el proceso — Técnica Estructural</title>
-  <link rel="icon" href="/src/assets/favicon/favicon-16x16.png" type="image/png">
+  <link rel="icon" href="/favicon/favicon-16x16.png" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Covered+By+Your+Grace&display=swap" rel="stylesheet">
-  <link rel="preload" href="/src/assets/gulfs-display-normal.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="/gulfs-display-normal.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
 
@@ -33,7 +33,7 @@ import Footer from "../components/Footer.astro"
       "Vive un proceso de transformación que te acompaña paso a paso hacia tu bienestar integral. Con 4 sesiones que cambiarán tu vida y harán que vuelvas a conocerte desde un prisma completamente nuevo.",
       "Además, la Técnica Estructural no es solo para personas: también puede aplicarse a tu empresa, tu hogar, tu mascota, tu linaje materno o paterno… y a muchos otros ámbitos que forman parte de tu vida.Todo lo que tiene energía puede volver a alinearse y liberar las cargas que ni sabemos que están sosteniendo."
     ]}
-    imageSrc="/src/assets/images/sky.png"
+    imageSrc="/images/sky.png"
     imageAlt="Sesión de Técnica Estructural"
   />
 
@@ -51,7 +51,7 @@ import Footer from "../components/Footer.astro"
           <div class="fade-in">
           <p>Hola me presento, soy</p>
             <h2><span class="name">María</span><br><span class="surname" style="margin-top: -3rem;">León</span></h2>
-            <img src="/src/assets/images/maria-leon.jpg" alt="María León, especialista en Técnica Estructural" />
+            <img src="/images/maria-leon.jpg" alt="María León, especialista en Técnica Estructural" />
           </div>
           <div class="presentation-text fade-in">
             <p>Me apasiona el bienestar y las personas, y uso la Técnica Estructural para ayudarte a sanar tu cuerpo y emociones a través de esta terapia energética.</p>
@@ -72,6 +72,6 @@ import Footer from "../components/Footer.astro"
 
   <Footer />
 
-  <script src="/src/assets/scripts.js"></script>
+  <script src="/scripts.js" is:inline></script>
 </body>
 </html>

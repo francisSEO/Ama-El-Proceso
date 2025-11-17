@@ -6,7 +6,7 @@ interface Props {
   speed?: number; // pixels per second
 }
 
-const { items, iconSrc = "/src/assets/images/heart.png", ariaLabel = "Frases destacadas", speed = 90 } = Astro.props;
+const { items, iconSrc = "/images/heart.png", ariaLabel = "Frases destacadas", speed = 90 } = Astro.props;
 const uid = `marquee-${Math.random().toString(36).slice(2)}`;
 ---
 

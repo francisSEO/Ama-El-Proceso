@@ -1,5 +1,4 @@
 ---
-import "../assets/styles.css"
 import Topbar from "../components/Topbar.astro"
 import { Content as AvisoLegalContent } from '../content/aviso-legal.md'
 import Footer from "../components/Footer.astro"
@@ -11,9 +10,10 @@ import Footer from "../components/Footer.astro"
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Aviso Legal — Ama el Proceso</title>
-  <link rel="icon" href="/src/assets/favicon/favicon-16x16.png" type="image/png">
+  <link rel="icon" href="/favicon/favicon-16x16.png" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Covered+By+Your+Grace&display=swap" rel="stylesheet">
-  <link rel="preload" href="/src/assets/gulfs-display-normal.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="/public/gulfs-display-normal.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="/public/styles.css" />
 </head>
 <body>
 <Topbar />

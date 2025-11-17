@@ -17,6 +17,17 @@
   font-display: swap;
 }
 
+*{box-sizing:border-box}
+
+html,body{height:100%}
+
+body{
+      margin:0;
+      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+      color:var(--ink);
+      background:var(--white);
+    }
+
 h1,h2,h3{
   font-family: "Gulf Display";
   font-weight: 100;
@@ -39,15 +50,7 @@ img{
   display:block;
 }
 
-*{box-sizing:border-box}
-html,body{height:100%}
 
-body{
-      margin:0;
-      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
-      color:var(--ink);
-      background:var(--white);
-    }
 
  .fade-in {
 	  opacity: 0;
@@ -279,7 +282,7 @@ header {
   height: 20px;
   margin-right: 0.6rem;        /* separación entre icono y texto */
   vertical-align: middle;
-  background: url("images/flower-icon.png") no-repeat center center;
+  background: url("/images/flower-icon.png") no-repeat center center;
   background-size: contain;
   transition: transform 0.3s ease;  /* animación suave */
 }
@@ -615,7 +618,7 @@ header {
   height: 20px;
   margin-right: 0.6rem;        /* separación entre icono y texto */
   vertical-align: middle;
-  background: url("images/flower-icon.png") no-repeat center center;
+  background: url("/images/flower-icon.png") no-repeat center center;
   background-size: contain;
   transition: transform 0.3s ease;  /* animación suave */
 }
@@ -627,6 +630,17 @@ header {
 .footer a:hover::before {
   transform: rotate(90deg);  /* rotación de 90 grados */
 }
+
+
+
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  white-space: nowrap; /* evita que las celdas salten de línea */
+   overflow-x: auto;
+  }
+
 
 .privacy-links {
   list-style: none;
@@ -684,6 +698,12 @@ header {
     text-align: left;
     min-width: 200px;
   }
+
+  td, th {
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
 
   .privacy-header {
     background-color: var(--pink);
@@ -751,7 +771,7 @@ header {
 
   @media screen and (max-width: 768px) {
     .privacy-container {
-      padding: 1rem 0.5rem;
+      padding: 1rem 1rem;
     }
 
     .privacy-container h1 {
@@ -798,5 +818,3 @@ header {
 .hero-center {
   position: relative;
 }
-
-

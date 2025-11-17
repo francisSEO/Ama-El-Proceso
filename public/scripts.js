@@ -31,7 +31,7 @@
     });
   }, {
     root: null, // Observa con respecto al viewport del documento
-    rootMargin: '0px',
+    rootMargin: "0px", // Ajusta el margen para activar antes o después
     threshold: 0.1 // Activa la animación cuando el 10% del elemento es visible
   });
 
