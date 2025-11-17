@@ -1,0 +1,115 @@
+---
+interface Props {
+  items: string[];
+  iconSrc?: string;
+  ariaLabel?: string;
+  speed?: number; // pixels per second
+}
+
+const { items, iconSrc = "/src/assets/images/heart.png", ariaLabel = "Frases destacadas", speed = 90 } = Astro.props;
+const uid = `marquee-${Math.random().toString(36).slice(2)}`;
+---
+
+<section class="flower-ticker" aria-label={ariaLabel}>
+  <div class="ticker-viewport" id={uid} data-speed={String(speed)} aria-hidden="false">
+    <div class="ticker-track">
+      <ul class="ticker">
+        {items.map(item => (
+          <li><img class="flower-icon" src={iconSrc} alt="icono de una flor" aria-hidden="true"> {item}</li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<script type="module">
+  const initMarquee = (container) => {
+    const track = container.querySelector('.ticker');
+    if (!track) return;
+
+    const ensureClones = () => {
+      const containerWidth = container.clientWidth || container.offsetWidth;
+      let totalWidth = track.scrollWidth;
+      const originalCount = track.children.length;
+      if (originalCount === 0) return;
+      let loops = 0;
+      while (totalWidth < containerWidth * 2 && loops < 12) {
+        for (let j = 0; j < originalCount; j++) {
+          const clone = track.children[j].cloneNode(true);
+          track.appendChild(clone);
+        }
+        totalWidth = track.scrollWidth;
+        loops++;
+      }
+    };
+
+    ensureClones();
+
+    let speedPxPerSec = Number(container.dataset.speed) || 90;
+    if (window.matchMedia && window.matchMedia('(max-width: 480px)').matches) {
+      speedPxPerSec = Math.max(50, speedPxPerSec * 1.2);
+    }
+
+    let trackWidth = track.scrollWidth;
+    let pos = 0;
+    let last = performance.now();
+    let rafId;
+
+    const step = (now) => {
+      const dt = now - last;
+      last = now;
+      pos += (speedPxPerSec * dt) / 1000;
+      if (pos >= trackWidth) pos = pos % trackWidth;
+      track.style.transform = `translateX(${-pos}px)`;
+      rafId = requestAnimationFrame(step);
+    };
+
+    const start = () => {
+      cancelAnimationFrame(rafId);
+      trackWidth = track.scrollWidth;
+      last = performance.now();
+      rafId = requestAnimationFrame(step);
+    };
+
+    let resizeTimeout;
+    const onResize = () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        ensureClones();
+        trackWidth = track.scrollWidth;
+        if (window.matchMedia && window.matchMedia('(max-width: 480px)').matches) {
+          speedPxPerSec = Math.max(50, Number(container.dataset.speed) * 1.2);
+        } else {
+          speedPxPerSec = Number(container.dataset.speed) || 90;
+        }
+        start();
+      }, 150);
+    };
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) cancelAnimationFrame(rafId);
+      else {
+        last = performance.now();
+        rafId = requestAnimationFrame(step);
+      }
+    });
+
+    container.addEventListener('touchend', () => {
+      setTimeout(() => { last = performance.now(); }, 50);
+    }, {passive:true});
+
+    window.addEventListener('resize', onResize);
+
+    start();
+  };
+
+  const mountAll = () => {
+    document.querySelectorAll('.ticker-viewport').forEach(initMarquee);
+  };
+
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    setTimeout(mountAll, 0);
+  } else {
+    document.addEventListener('DOMContentLoaded', mountAll);
+  }
+</script>

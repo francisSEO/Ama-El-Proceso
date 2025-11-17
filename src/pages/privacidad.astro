@@ -1,0 +1,29 @@
+---
+import Topbar from "../components/Topbar.astro"
+import { Content as PrivacidadContent } from '../content/privacidad.md'
+import Footer from "../components/Footer.astro"
+---
+
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Política de Privacidad — Ama el Proceso</title>
+  <link rel="icon" href="/src/assets/favicon/favicon-16x16.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Covered+By+Your+Grace&display=swap" rel="stylesheet">
+  <link rel="preload" href="/src/assets/gulfs-display-normal.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="/src/assets/styles.css" />
+</head>
+<body>
+<Topbar />
+  <div class="privacy-container">
+    <a href="/" class="back-button">← Volver a inicio</a>
+    <h1>Política de Privacidad</h1>
+    
+    <PrivacidadContent />
+  </div>
+<Footer />
+</body>
+
+</html>

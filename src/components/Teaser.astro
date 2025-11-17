@@ -1,0 +1,26 @@
+---
+interface Props {
+  title: string;
+  paragraphs: string[];
+  imageSrc: string;
+  imageAlt: string;
+  ctaText?: string;
+  ctaHref?: string;
+}
+
+const { title, paragraphs, imageSrc, imageAlt, ctaText = "Cuéntame más", ctaHref = "https://wa.me/+34614048655" } = Astro.props;
+---
+
+<section class="teaser white">
+      <div class="teaser-text fade-in">
+        <h2>{title}</h2>
+        {paragraphs.map(paragraph => (
+          <p>{paragraph}</p>
+        ))}
+        <a class="cta-simple" href={ctaHref}>{ctaText}</a>
+      </div>
+        
+      <div class="teaser-image blurry fade-in">
+        <img src={imageSrc} alt={imageAlt} />
+      </div>
+</section>

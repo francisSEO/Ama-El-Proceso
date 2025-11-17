@@ -49,6 +49,26 @@ body{
       background:var(--white);
     }
 
+ .fade-in {
+	  opacity: 0;
+  transform: translateY(20px); 
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out; 
+}
+
+ .fade-in.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes fadeInOpacity {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}   
+
 header {
   z-index: 100;
   position: relative;
@@ -89,7 +109,27 @@ header {
       font-size:clamp(16px, 2.2vw, 30px);
       font-weight:400;
       color:#fff;
+      position:relative;
+      display:flex;
+      align-items:center;
+      gap:0.1em;
+      white-space:nowrap;
     }
+    
+    .brand .bottom span {
+      display:inline-flex;
+      align-items:center;
+      flex-shrink:0;
+    }
+    
+    .brand .bottom img {
+      display:inline;
+      height:.7em;
+      width:auto;
+      max-width:none;
+      margin:0;
+    }
+    
     .brand .heart{ color:#ff477e; }
 
     @media screen and (min-width: 768px) {
@@ -122,8 +162,9 @@ header {
       position:relative;
       overflow:hidden;
       margin-top: -9rem;
-      z-index: 10;
+      z-index: 0;
       padding-top: 9rem;
+      background-color: var(--pink);
     
       p{
         font-size: 1.2rem;
@@ -137,23 +178,7 @@ header {
       } 
     }
 
-    .gradient-background {
-  background: linear-gradient(241deg,var(--pink),var(--yellow));
-  background-size: 120% 120%;
-  animation: gradient-animation 8s ease infinite;
-}
-
-@keyframes gradient-animation {
-  0% {
-    background-position: 0% 20%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 70%;
-  }
-}
+    
 
    
     /* Centro: titulares */
@@ -174,6 +199,7 @@ header {
     }
     .sub{
       display:inline-block;
+      display:inline;
       font-family:"Covered By Your Grace", cursive;
       font-weight:400;
       font-size: 3rem;
@@ -183,6 +209,14 @@ header {
       position:relative;
       padding:.08em;
       z-index:0;
+      padding: .1em .25em;
+      
+      /* Para que el fondo se aplique a cada línea */
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
+
+      /* "resaltador" amarillo detrás del texto */
+      background: linear-gradient(to top, var(--yellow) 50%, transparent 50%);
     }
     /* “resaltador” amarillo detrás del texto */
     .sub::before{
@@ -202,7 +236,7 @@ header {
       display:inline-flex;
       align-items:center;
       gap:.6rem;
-      padding:.9rem 1.4rem;
+      padding:.9rem 2.4rem;
       font-weight:800;
       background-color:var(--btn);
       color:#0f1730;
@@ -213,7 +247,7 @@ header {
       transition: transform .1s ease, box-shadow .1s ease, filter .1s ease;
       box-shadow: 2px 3px 0px 0px #000000;
     }
-    .cta svg{ width:13px; height:13px;margin-left: 2px; margin-top: 2px;}
+    .cta svg{ width:18px; height:18px;margin-top: 2px;}
     .cta:hover{ transform:translateY(-1px); filter:brightness(1.04); box-shadow: 5px 5px 0px 0px #000000;}
     .cta:active{ transform:translateY(0); }
 
@@ -338,13 +372,15 @@ header {
    border-top: 2px solid var(--ink);
 }
 .ticker-viewport{
-  --speed: 18s; /* ajustar duración del recorrido */
+  overflow: hidden;
+}
+.ticker-track{
+  display:block;
+  overflow: visible;
 }
 .ticker-wrap{
   display:flex;
-  width:200%; /* contiene dos bloques idénticos para bucle */
   align-items:center;
-  animation: scroll-left var(--speed) linear infinite;
 }
 .ticker{
   display:flex;
@@ -372,22 +408,20 @@ header {
   display:block;
 }
 
-@keyframes scroll-left{
-  from{ transform: translateX(0); }
-  to{ transform: translateX(-50%); }
-}
 
-/* pausa al poner el ratón encima */
-.flower-ticker:hover .ticker-wrap{ animation-play-state: paused; }
+/* Mejora de rendimiento */
+.ticker-track { will-change: transform; }
 
-/* accesibilidad: reduce motion */
+/* accesibilidad: prefer-reduced-motion -> disable transform animation effect (JS will respect) */
 @media (prefers-reduced-motion: reduce){
-  .ticker-wrap{ animation: none; }
+  .ticker-track{ transition: none; }
 }
+
+/* Responsive: we keep speed control in JS via data attributes; CSS only handles layout */
 
 
 .presentation {
-  text-align: center;
+  text-align: center;;
   max-width: 500px;
   margin: auto;
   border-top: 0px;
@@ -593,4 +627,176 @@ header {
 .footer a:hover::before {
   transform: rotate(90deg);  /* rotación de 90 grados */
 }
+
+.privacy-links {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
 }
+
+@media screen and (max-width: 480px) {
+  .privacy-links {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  
+}
+
+
+ .back-button {
+    display: inline-block;
+    margin-bottom: 2rem;
+    padding: 0.8rem 1.5rem;
+    background-color: #F5793B;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 999px;
+    font-weight: 600;
+    transition: transform 0.1s ease, box-shadow 0.1s ease, filter 0.1s ease;
+    box-shadow: 2px 3px 0px 0px #000000;
+  }
+
+  .back-button:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.04);
+    box-shadow: 5px 5px 0px 0px #267F53;
+  }
+
+  .back-button:active {
+    transform: translateY(0);
+  }
+
+  .privacy-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    line-height: 1.8;
+    color: #121212;
+  }
+
+  th{
+    background-color: var(--pink);
+    color: #fff;
+    padding: 0.5rem;
+    text-align: left;
+    min-width: 200px;
+  }
+
+  .privacy-header {
+    background-color: var(--pink);
+  }
+
+  .privacy-container h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: #267F53;
+    font-family: "Gulf Display", system-ui;
+  }
+
+  .privacy-container h2 {
+    font-size: 1.5rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    color: #F5793B;
+    border-bottom: 2px solid #ffd465;
+    padding-bottom: 0.5rem;
+    font-family: "Gulf Display", system-ui;
+  }
+
+
+
+  .privacy-container p {
+    margin-bottom: 1rem;
+  }
+
+  .privacy-container ul, 
+  .privacy-container ol {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .privacy-container li {
+    margin-bottom: 0.5rem;
+  }
+
+
+  .privacy-container a {
+    color: var(--green);
+    text-decoration: none;
+    border: none;
+    transition: color 0.2s ease;
+    background-color: transparent;
+    box-shadow: none;
+
+  }
+
+  .privacy-container a:hover {
+    color: #267F53;
+    border-bottom-color: #267F53;
+  }
+
+  .privacy-container strong {
+    font-weight: 600;
+    color: #121212;
+  }
+
+  .privacy-container hr {
+    border: none;
+    border-top: 2px solid #ffd465;
+    margin: 2rem 0;
+  }
+
+  @media screen and (max-width: 768px) {
+    .privacy-container {
+      padding: 1rem 0.5rem;
+    }
+
+    .privacy-container h1 {
+      font-size: 1.8rem;
+    }
+
+    .privacy-container h2 {
+      font-size: 1.2rem;
+    }
+
+    .back-button {
+      margin-bottom: 1.5rem;
+      padding: 0.6rem 1.2rem;
+      font-size: 0.9rem;
+    }
+  }
+
+
+  /* Contenedor del canvas de Three.js */
+.liquid-ether {
+  position: absolute;      /* para que quede detrás del contenido */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;             /* Detrás del contenido, pero sobre el fondo */
+  pointer-events: none;    /* para que los clicks pasen al contenido */             
+}                                                           
+          
+/* Canvas de Three.js */                                                                                              
+.liquid-ether canvas {
+  display: block;
+  width: 100%;               
+  height: 100%;
+}
+
+/* Ajustes del hero para que el contenido quede sobre el canvas */
+.hero {
+  position: relative;      /* para que el canvas absolute quede dentro */
+  overflow: hidden;
+}
+
+/* Hero center encima del canvas */
+.hero-center {
+  position: relative;
+}
+
+

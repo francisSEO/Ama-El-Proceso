@@ -1,0 +1,49 @@
+---
+interface Props {
+  pregunta1: string;
+  respuesta1: string;
+  pregunta2: string;
+  respuesta2: string;
+  pregunta3: string;
+  respuesta3: string;
+}
+
+const { pregunta1, respuesta1, pregunta2, respuesta2, pregunta3, respuesta3 } = Astro.props;
+---
+
+<section class="faqs">
+  <div class="faqs-text">
+    <h2 class="fade-in">Preguntas frecuentes</h2>
+    
+    <div class="faq-item fade-in">
+      <button class="faq-toggle" aria-expanded="false">
+        <h3>{pregunta1}</h3>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-content">
+        <p>{respuesta1}</p>
+      </div>
+    </div>
+
+    <div class="faq-item fade-in">
+      <button class="faq-toggle" aria-expanded="false">
+        <h3>{pregunta2}</h3>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-content">
+        <p>{respuesta2}</p>
+      </div>
+    </div>
+
+    <div class="faq-item fade-in">
+      <button class="faq-toggle" aria-expanded="false">
+        <h3>{pregunta3}</h3>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-content">
+        <p>{respuesta3}</p>
+      </div>
+    </div>
+
+  </div>
+</section>
