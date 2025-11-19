@@ -1,10 +1,10 @@
 :root{
       --pink:#F296BD;           /* fondo */
-      --yellow:#ffd465;         /* subrayado */
+      --yellow:#fcca59;         /* subrayado */
       --btn:#afc4ff;            /* botón */
       --ink:#121212;            /* texto oscuro */
       --white:#f9f3f3;            /* blanco */
-      --green:#267F53;        /* verde */
+      --green:#267f53;        /* verde */
       --orange:#F5793B;         /* naranja */
     }
 
@@ -818,3 +818,79 @@ table {
 .hero-center {
   position: relative;
 }
+
+.pricing {
+  padding: 4rem 1rem;
+  border: 1px 0 solid var(--ink);
+  max-width: 800px;
+  margin: 0 auto
+}
+
+.pricing-text {
+  text-align: center;
+  margin-bottom: 2rem;
+
+  h2{
+    color: var(--green);
+    margin-bottom: 0.5rem;
+  }
+}
+
+.pricing-card{
+  background-color: var(--orange);
+  border-radius: 2rem;
+  padding: 2rem;
+  max-width: 430px;
+  margin: auto;
+  margin-top: 2rem;
+  
+  h3{
+    color: var(--white);
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    margin-top: 0;
+  }
+  .price{
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--white);
+    margin: 0;
+    margin-bottom: 1rem;
+  }
+  
+  li{
+    list-style: none;
+    margin: 1rem 0;
+    font-size: 1rem;
+    color: var(--white);
+            text-align: left;
+        max-width: 400px;
+                margin: auto;
+  }
+  li::before {
+    content: "";
+    display: inline-block;       /* permite que tenga ancho/alto */
+    width: 20px;                 /* ajusta al tamaño deseado */
+    height: 20px;
+    margin-right: 0.6rem;        /* separación entre icono y texto */
+    vertical-align: middle;
+    background: url("/images/heart-yellow.svg") no-repeat center center;
+    background-size: contain;
+  }
+  button{
+    margin-top: 2.5rem;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    display: block;
+
+  }
+}
+
+.pricing-note{
+  max-width: 430px;
+  text-align: center;
+  padding:0rem 2rem;
+  margin: auto;
+}
+
