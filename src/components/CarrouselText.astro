@@ -6,17 +6,37 @@ interface Props {
   speed?: number; // pixels per second
 }
 
-const { items, iconSrc = "/images/heart.png", ariaLabel = "Frases destacadas", speed = 90 } = Astro.props;
+const {
+  items,
+  iconSrc = "/images/heart.png",
+  ariaLabel = "Frases destacadas",
+  speed = 90,
+} = Astro.props;
 const uid = `marquee-${Math.random().toString(36).slice(2)}`;
 ---
 
 <section class="flower-ticker" aria-label={ariaLabel}>
-  <div class="ticker-viewport" id={uid} data-speed={String(speed)} aria-hidden="false">
+  <div
+    class="ticker-viewport"
+    id={uid}
+    data-speed={String(speed)}
+    aria-hidden="false"
+  >
     <div class="ticker-track">
       <ul class="ticker">
-        {items.map(item => (
-          <li><img class="flower-icon" src={iconSrc} alt="icono de una flor" aria-hidden="true"> {item}</li>
-        ))}
+        {
+          items.map((item) => (
+            <li>
+              <img
+                class="flower-icon"
+                src={iconSrc}
+                alt="icono de una flor"
+                aria-hidden="true"
+              />{" "}
+              {item}
+            </li>
+          ))
+        }
       </ul>
     </div>
   </div>
@@ -24,21 +44,48 @@ const uid = `marquee-${Math.random().toString(36).slice(2)}`;
 
 <script type="module">
   const initMarquee = (container) => {
-    const track = container.querySelector('.ticker');
+    const track = container.querySelector(".ticker");
     if (!track) return;
 
+    // 1. Capture original items
+    const originalItems = Array.from(track.children);
+    if (originalItems.length === 0) return;
+
+    let periodWidth = 0;
+    let rafId;
+    let pos = 0;
+
     const ensureClones = () => {
+      // Clear track and re-add originals
+      track.innerHTML = "";
+      originalItems.forEach((item) => track.appendChild(item));
+
+      // Add one set of clones to measure period
+      originalItems.forEach((item) => {
+        track.appendChild(item.cloneNode(true));
+      });
+
+      // Measure period (distance from first original to first clone)
+      const firstOriginal = track.children[0];
+      const firstClone = track.children[originalItems.length];
+      // Use offsetLeft difference
+      periodWidth = firstClone.offsetLeft - firstOriginal.offsetLeft;
+
+      // Ensure we have enough clones to cover container + buffer
       const containerWidth = container.clientWidth || container.offsetWidth;
-      let totalWidth = track.scrollWidth;
-      const originalCount = track.children.length;
-      if (originalCount === 0) return;
+
+      // We want to be able to scroll `periodWidth` and still have content.
+      // So total width should be at least containerWidth + periodWidth.
+
+      let currentScrollWidth = track.scrollWidth;
+
+      // Safety loop to add more clones if needed
       let loops = 0;
-      while (totalWidth < containerWidth * 2 && loops < 12) {
-        for (let j = 0; j < originalCount; j++) {
-          const clone = track.children[j].cloneNode(true);
-          track.appendChild(clone);
-        }
-        totalWidth = track.scrollWidth;
+      while (currentScrollWidth < containerWidth + periodWidth && loops < 20) {
+        originalItems.forEach((item) => {
+          track.appendChild(item.cloneNode(true));
+        });
+        currentScrollWidth = track.scrollWidth;
         loops++;
       }
     };
@@ -46,27 +93,28 @@ const uid = `marquee-${Math.random().toString(36).slice(2)}`;
     ensureClones();
 
     let speedPxPerSec = Number(container.dataset.speed) || 90;
-    if (window.matchMedia && window.matchMedia('(max-width: 480px)').matches) {
+    if (window.matchMedia && window.matchMedia("(max-width: 480px)").matches) {
       speedPxPerSec = Math.max(50, speedPxPerSec * 1.2);
     }
 
-    let trackWidth = track.scrollWidth;
-    let pos = 0;
     let last = performance.now();
-    let rafId;
 
     const step = (now) => {
       const dt = now - last;
       last = now;
       pos += (speedPxPerSec * dt) / 1000;
-      if (pos >= trackWidth) pos = pos % trackWidth;
+
+      // Seamless loop: reset when we've scrolled one full period
+      if (pos >= periodWidth) {
+        pos -= periodWidth;
+      }
+
       track.style.transform = `translateX(${-pos}px)`;
       rafId = requestAnimationFrame(step);
     };
 
     const start = () => {
       cancelAnimationFrame(rafId);
-      trackWidth = track.scrollWidth;
       last = performance.now();
       rafId = requestAnimationFrame(step);
     };
@@ -75,9 +123,15 @@ const uid = `marquee-${Math.random().toString(36).slice(2)}`;
     const onResize = () => {
       clearTimeout(resizeTimeout);
       resizeTimeout = setTimeout(() => {
+        cancelAnimationFrame(rafId);
         ensureClones();
-        trackWidth = track.scrollWidth;
-        if (window.matchMedia && window.matchMedia('(max-width: 480px)').matches) {
+        pos = 0;
+        track.style.transform = `translateX(0px)`;
+
+        if (
+          window.matchMedia &&
+          window.matchMedia("(max-width: 480px)").matches
+        ) {
           speedPxPerSec = Math.max(50, Number(container.dataset.speed) * 1.2);
         } else {
           speedPxPerSec = Number(container.dataset.speed) || 90;
@@ -86,7 +140,7 @@ const uid = `marquee-${Math.random().toString(36).slice(2)}`;
       }, 150);
     };
 
-    document.addEventListener('visibilitychange', () => {
+    document.addEventListener("visibilitychange", () => {
       if (document.hidden) cancelAnimationFrame(rafId);
       else {
         last = performance.now();
@@ -94,22 +148,31 @@ const uid = `marquee-${Math.random().toString(36).slice(2)}`;
       }
     });
 
-    container.addEventListener('touchend', () => {
-      setTimeout(() => { last = performance.now(); }, 50);
-    }, {passive:true});
+    container.addEventListener(
+      "touchend",
+      () => {
+        setTimeout(() => {
+          last = performance.now();
+        }, 50);
+      },
+      { passive: true },
+    );
 
-    window.addEventListener('resize', onResize);
+    window.addEventListener("resize", onResize);
 
     start();
   };
 
   const mountAll = () => {
-    document.querySelectorAll('.ticker-viewport').forEach(initMarquee);
+    document.querySelectorAll(".ticker-viewport").forEach(initMarquee);
   };
 
-  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+  if (
+    document.readyState === "complete" ||
+    document.readyState === "interactive"
+  ) {
     setTimeout(mountAll, 0);
   } else {
-    document.addEventListener('DOMContentLoaded', mountAll);
+    document.addEventListener("DOMContentLoaded", mountAll);
   }
 </script>

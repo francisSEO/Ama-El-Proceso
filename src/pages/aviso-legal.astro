@@ -1,27 +1,15 @@
 ---
-import Topbar from "../components/Topbar.astro"
-import { Content as AvisoLegalContent } from '../content/aviso-legal.md'
-import Footer from "../components/Footer.astro"
+import Layout from "../layouts/Layout.astro";
+import Topbar from "../components/Topbar.astro";
+import { Content as AvisoLegalContent } from "../content/aviso-legal.md";
+import Footer from "../components/Footer.astro";
 ---
 
-<!doctype html>
-<html lang="es">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Aviso Legal — Ama el Proceso</title>
-  <link rel="icon" href="/favicon/favicon-16x16.png" type="image/png">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Covered+By+Your+Grace&display=swap" rel="stylesheet">
-  <link rel="preload" href="/gulfs-display-normal.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="stylesheet" href="/styles.css" />
-</head>
-<body>
-<Topbar />
+<Layout title="Aviso Legal — Ama el Proceso">
+  <Topbar />
   <div class="privacy-container">
     <a href="/" class="back-button">← Volver a inicio</a>
     <AvisoLegalContent />
   </div>
-<Footer />
-</body>
-</html>
-
+  <Footer />
+</Layout>

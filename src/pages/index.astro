@@ -1,32 +1,20 @@
 ---
-import Topbar from "../components/Topbar.astro"
-import HeroHome from '../components/HeroHome.astro'
-import Teaser from "../components/Teaser.astro"
-import CarrouselText from "../components/CarrouselText.astro"
-import Pricing from "../components/Pricing.astro"
-import Faqs from "../components/Faqs.astro"
-import Footer from "../components/Footer.astro"
+import Layout from "../layouts/Layout.astro";
+import Topbar from "../components/Topbar.astro";
+import HeroHome from "../components/HeroHome.astro";
+import Teaser from "../components/Teaser.astro";
+import CarrouselText from "../components/CarrouselText.astro";
+import Pricing from "../components/Pricing.astro";
+import Faqs from "../components/Faqs.astro";
+import Footer from "../components/Footer.astro";
 ---
 
-
-<!doctype html>
-<html lang="es">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ama el proceso — Técnica Estructural</title>
-  <link rel="icon" href="/favicon/favicon-16x16.png" type="image/png">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Covered+By+Your+Grace&display=swap" rel="stylesheet">
-  <link rel="preload" href="/gulfs-display-normal.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="stylesheet" href="/styles.css" />
-</head>
-<body>
-
+<Layout title="Ama el proceso — Técnica Estructural">
   <Topbar />
 
   <HeroHome />
 
-  <Teaser 
+  <Teaser
     title="Todos los dolores provienen de un conflicto emocional"
     paragraphs={[
       "Este es uno de los principios de la Técnica Estructural. Es un tipo de terapia energética que trabaja el cuerpo físico a través de la columna vertebral y el cuerpo emocional.",
@@ -37,33 +25,53 @@ import Footer from "../components/Footer.astro"
     imageAlt="Sesión de Técnica Estructural"
   />
 
-  <CarrouselText 
+  <CarrouselText
     items={[
       "Reconócete",
       "Siéntete más tú que nunca",
       "Libera tus emociones",
-      "Aprende a vivir sin dolor"
+      "Aprende a vivir sin dolor",
     ]}
   />
 
   <section class="teaser presentation">
-        <div class="teaser-text no-margin fade-in">
-          <div class="fade-in">
-          <p>Hola me presento, soy</p>
-            <h2><span class="name">María</span><br><span class="surname" style="margin-top: -3rem;">León</span></h2>
-            <img src="/images/maria-leon.jpg" alt="María León, especialista en Técnica Estructural" />
-          </div>
-          <div class="presentation-text fade-in">
-            <p>Me apasiona el bienestar y las personas, y uso la Técnica Estructural para ayudarte a sanar tu cuerpo y emociones a través de esta terapia energética.</p>
-            <p>Mi misión es ayudarte a liberarte del dolor físico y emocional para que puedas centrarte en disfrutar de la vida de una manera completamente nueva. </p>
-            <p>Quiero acompañarte a redescubrirte y romper con todo aquello que ya no te sirve para que puedas abrirte a las maravillas que tiene la vida preparadas para ti. Porque cuando tú te eliges, todo lo demas también empieza a elegirte a ti.</p>
-          </div>
-        </div>
+    <div class="teaser-text no-margin fade-in">
+      <div class="fade-in">
+        <p>Hola me presento, soy</p>
+        <h2>
+          <span class="name">María</span><br /><span
+            class="surname"
+            style="margin-top: -3rem;">León</span>
+        </h2>
+        <img
+          src="/images/maria-leon.jpg"
+          alt="María León, especialista en Técnica Estructural"
+        />
+      </div>
+      <div class="presentation-text fade-in">
+        <p>
+          Me apasiona el bienestar y las personas, y uso la Técnica Estructural
+          para ayudarte a sanar tu cuerpo y emociones a través de esta terapia
+          energética.
+        </p>
+        <p>
+          Mi misión es ayudarte a liberarte del dolor físico y emocional para
+          que puedas centrarte en disfrutar de la vida de una manera
+          completamente nueva.
+        </p>
+        <p>
+          Quiero acompañarte a redescubrirte y romper con todo aquello que ya no
+          te sirve para que puedas abrirte a las maravillas que tiene la vida
+          preparadas para ti. Porque cuando tú te eliges, todo lo demas también
+          empieza a elegirte a ti.
+        </p>
+      </div>
+    </div>
   </section>
 
   <Pricing />
 
-  <Faqs 
+  <Faqs
     pregunta1="¿Cómo se realizan las sesiones?"
     respuesta1="Las sesiones se realizan de forma remota, sin necesidad de conexión presencial, utilizando técnicas específicas para trabajar con la energía del cuerpo."
     pregunta2="¿Cuántas sesiones necesito?"
@@ -73,7 +81,4 @@ import Footer from "../components/Footer.astro"
   />
 
   <Footer />
-
-  <script src="/scripts.js" is:inline></script>
-</body>
-</html>
+</Layout>
