@@ -203,6 +203,10 @@ header {
     font-size: 1.2rem;
     color: #fff;
   }
+
+  .description {
+    margin-top: 2rem;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -930,6 +934,7 @@ th {
   max-width: 430px;
   margin: auto;
   margin-top: 2rem;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, filter 0.1s ease;
 
   h3 {
     color: var(--white);
@@ -948,12 +953,12 @@ th {
 
   li {
     list-style: none;
-    margin: 1rem 0;
     font-size: 1rem;
     color: var(--white);
     text-align: left;
     max-width: 400px;
     margin: auto;
+    line-height: 1.5;
   }
 
   li::before {
@@ -978,6 +983,12 @@ th {
     display: block;
 
   }
+}
+
+.pricing-card:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.04);
+  box-shadow: 5px 5px 0px 0px var(--yellow);
 }
 
 .pricing-note {
