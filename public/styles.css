@@ -387,6 +387,7 @@ header {
   .teaser-text {
     flex: 1;
   }
+
 }
 
 .teaser-text {
@@ -408,6 +409,14 @@ header {
     border-left: 2px solid var(--ink);
     border-bottom: none;
     overflow: hidden;
+  }
+
+
+}
+
+@media screen and (max-width: 768px) {
+  .teaser-image {
+    display: none;
   }
 }
 
@@ -650,6 +659,7 @@ header {
   .faqs {
     padding: 5rem 3rem;
   }
+
 
   .faq-toggle {
     padding: 2rem;

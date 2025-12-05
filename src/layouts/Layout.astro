@@ -18,8 +18,10 @@ const { title, description } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		{description && <meta name="description" content={description} />}
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
-			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Covered+By+Your+Grace&display=swap"
+			href="https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&family=Inter:wght@400;600;800&family=Shadows+Into+Light&display=swap"
 			rel="stylesheet"
 		/>
 		<link
@@ -29,6 +31,7 @@ const { title, description } = Astro.props;
 			type="font/ttf"
 			crossorigin
 		/>
+
 		<link rel="stylesheet" href="/styles.css" />
 	</head>
 	<body>
