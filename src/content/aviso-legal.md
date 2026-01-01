@@ -7,7 +7,7 @@ Queremos ser lo más transparentes posible. Por favor, lea cuidadosamente los t�
 1\. Información general
 ---------------------------
 
-Esta página web [**https://amaelproceso.com**](https://amaelproceso.com) es propiedad de **María Rodríguez del Valle**, con DNI **05440043Z**, correo electrónico de contacto **hola@amaelproceso.com**, domicilio fiscal en **Avenida del Manzanares 154, 1D, 28019 Madrid (Madrid)**.(En adelante, **RESPONSABLE DEL SITIO**) cuya actividad comprende **coaching, terapia, consultoría, formación online e infoproductos**.
+Esta página web [**https://amaelproceso.com**](https://amaelproceso.com) es propiedad de **María Rodríguez del Valle**, con DNI **05440043Z**, correo electrónico de contacto **hola@amaelproceso.com**.(En adelante, **RESPONSABLE DEL SITIO**) cuya actividad comprende **coaching, terapia, consultoría, formación online e infoproductos**.
 
 ### 1.1. Productos y servicios
 
@@ -121,7 +121,7 @@ Se han implementado medidas técnicas y organizativas para garantizar la segurid
 
 ### INFORMACIÓN DE PROTECCIÓN DE DATOS
 
-**RESPONSABLE:** María Rodríguez del Valle – DNI 05440043Z**Email:** hola@amaelproceso.com**Dirección postal:** Avenida del Manzanares 154, 1D, 28019 Madrid (Madrid)
+**RESPONSABLE:** María Rodríguez del Valle – DNI 05440043Z**Email:** hola@amaelproceso.com
 
 **Finalidades:** comunicación comercial, respuesta a consultas, soporte técnico, gestión de servicios y productos, finalidades profesionales.
 

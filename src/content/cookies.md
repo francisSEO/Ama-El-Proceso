@@ -174,4 +174,4 @@ La versión publicada en el Sitio Web será la vigente.
 
 Para cualquier consulta sobre esta Política de Cookies, el Usuario puede contactar con:
 
-**Responsable:** María Rodríguez del Valle**Email:** hola@amaelproceso.com**Dirección:** Avenida del Manzanares 154, 1D, 28019 Madrid (Madrid)
+**Responsable:** María Rodríguez del Valle**Email:** hola@amaelproceso.com

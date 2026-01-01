@@ -25,9 +25,7 @@ La responsable del tratamiento de los datos personales recogidos en [**https://a
 *   **Nombre completo:** María Rodríguez del Valle
     
 *   **DNI:** 05440043Z
-    
-*   **Domicilio:** Avenida del Manzanares 154, 1D, 28019 Madrid (Madrid)
-    
+        
 *   **Teléfono de contacto:** +34 614 048 655
     
 *   **Email de contacto:** hola@amaelproceso.com
@@ -233,8 +231,6 @@ El Usuario tiene, frente a la Responsable, los siguientes derechos reconocidos p
     
 
 El Usuario podrá ejercer estos derechos mediante comunicación escrita dirigida a:
-
-*   **Dirección postal:**María Rodríguez del ValleAvenida del Manzanares 154, 1D28019 Madrid (Madrid)
     
 *   **Correo electrónico:****hola@amaelproceso.com**
     

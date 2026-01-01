@@ -1,0 +1,211 @@
+---
+import ProtectedLayout from "../../layouts/ProtectedLayout.astro";
+---
+
+<ProtectedLayout title="Mi Panel - Ama el proceso">
+    <div class="panel-container">
+        <header class="panel-header">
+            <div class="user-info">
+                <img id="user-avatar" src="" alt="Avatar" class="avatar" />
+                <div>
+                    <h1 id="user-name">Hola</h1>
+                    <p class="subtitle">Bienvenida a tu espacio personal</p>
+                </div>
+            </div>
+            <button id="logout-btn" class="logout-btn">
+                <span>Cerrar Sesión</span>
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    ><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"
+                    ></path><polyline points="16 17 21 12 16 7"></polyline><line
+                        x1="21"
+                        y1="12"
+                        x2="9"
+                        y2="12"></line></svg
+                >
+            </button>
+        </header>
+
+        <main class="panel-grid">
+            <div class="card welcome-card">
+                <h2>Tu Progreso</h2>
+                <p>
+                    Aquí podrás ver el estado de tus sesiones y materiales
+                    exclusivos.
+                </p>
+                <div class="placeholder-content">
+                    <div class="skeleton-line"></div>
+                    <div class="skeleton-line short"></div>
+                </div>
+            </div>
+
+            <div class="card resources-card">
+                <h2>Recursos</h2>
+                <ul class="resource-list">
+                    <li>
+                        <span class="icon">📄</span>
+                        <span>Guía de integración</span>
+                    </li>
+                    <li>
+                        <span class="icon">🎧</span>
+                        <span>Meditación guiada</span>
+                    </li>
+                </ul>
+            </div>
+        </main>
+    </div>
+</ProtectedLayout>
+
+<script>
+    import { auth, logout } from "../../firebase/client";
+    import { onAuthStateChanged } from "firebase/auth";
+
+    const userName = document.getElementById("user-name");
+    const userAvatar = document.getElementById(
+        "user-avatar",
+    ) as HTMLImageElement;
+    const logoutBtn = document.getElementById("logout-btn");
+
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            if (userName)
+                userName.textContent = `Hola, ${user.displayName?.split(" ")[0] || "Viajera"}`;
+            if (userAvatar)
+                userAvatar.src =
+                    user.photoURL ||
+                    `https://ui-avatars.com/api/?name=${user.displayName}&background=random`;
+        }
+    });
+
+    logoutBtn?.addEventListener("click", async () => {
+        try {
+            await logout();
+        } catch (error) {
+            console.error("Error logging out:", error);
+        }
+    });
+</script>
+
+<style>
+    .panel-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+        min-height: 100vh;
+    }
+
+    .panel-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 3rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    .user-info {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .avatar {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid white;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        font-family: "Outfit", sans-serif;
+        font-size: 2rem;
+        color: #2d3748;
+        margin: 0;
+    }
+
+    .subtitle {
+        color: #718096;
+        margin: 0;
+    }
+
+    .logout-btn {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        border: 1px solid #e2e8f0;
+        background: white;
+        border-radius: 8px;
+        color: #718096;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-family: "Inter", sans-serif;
+    }
+
+    .logout-btn:hover {
+        background: #fed7d7;
+        color: #c53030;
+        border-color: #feb2b2;
+    }
+
+    .panel-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+    }
+
+    .card {
+        background: white;
+        border-radius: 16px;
+        padding: 2rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        border: 1px solid #e2e8f0;
+        transition: transform 0.2s;
+    }
+
+    .card:hover {
+        transform: translateY(-4px);
+    }
+
+    .card h2 {
+        font-family: "Outfit", sans-serif;
+        color: #2d3748;
+        margin-top: 0;
+    }
+
+    .resource-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .resource-list li {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+        border-radius: 8px;
+        background: #f7fafc;
+        margin-bottom: 0.5rem;
+        cursor: pointer;
+        transition: background 0.2s;
+    }
+
+    .resource-list li:hover {
+        background: #edf2f7;
+    }
+
+    .icon {
+        font-size: 1.5rem;
+    }
+</style>

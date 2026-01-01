@@ -1,46 +1,71 @@
-# Astro Starter Kit: Basics
+# Ama el Proceso
 
-```sh
-npm create astro@latest -- --template basics
-```
+Bienvenido al repositorio de **Ama el Proceso**. Este proyecto es una aplicación web moderna construida con [Astro](https://astro.build), diseñada con una estética "Calm Tech" y enfocada en ofrecer una experiencia de usuario serena y de alto rendimiento.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 🛠️ Tecnologías
 
-## 🚀 Project Structure
+Este proyecto utiliza una combinación robusta de tecnologías modernas:
 
-Inside of your Astro project, you'll see the following folders and files:
+- **Core & Framework:** [Astro](https://astro.build) (v5+) - Para un rendimiento web óptimo.
+- **UI Components:** [React](https://react.dev) (v19) - Para interactividad y componentes complejos.
+- **Backend & Auth:** [Firebase](https://firebase.google.com) - Para autenticación segura y base de datos.
+- **Gráficos:** [Three.js](https://threejs.org/) - Para elementos visuales 3D inmersivos.
+
+## � Estructura del Proyecto
+
+La estructura principal del código fuente es la siguiente:
 
 ```text
 /
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
+├── public/          # Archivos estáticos y assets públicos
+├── src/
+│   ├── components/  # Componentes reutilizables (UI, Navegación, etc.)
+│   ├── content/     # Colecciones de contenido y datos estáticos
+│   ├── firebase/    # Configuración e inicialización de servicios de Firebase
+│   ├── layouts/     # Plantillas de diseño principales (Layout base)
+│   └── pages/       # Rutas de la aplicación (File-based routing)
+│       ├── panel/   # Área de administración o panel de usuario
+│       ├── login    # Página de autenticación
+│       └── ...      # Páginas públicas (Inicio, Legales)
 └── package.json
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## 🚀 Configuración y Ejecución
 
-## 🧞 Commands
+Sigue estos pasos para levantar el proyecto en tu entorno local:
 
-All commands are run from the root of the project, from a terminal:
+1.  **Instalar dependencias:**
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+    ```bash
+    npm install
+    ```
 
-## 👀 Want to learn more?
+2.  **Variables de Entorno:**
+    Asegúrate de configurar las variables de entorno necesarias (claves de Firebase, etc.) creando un archivo `.env` en la raíz del proyecto.
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+3.  **Iniciar el servidor de desarrollo:**
+
+    ```bash
+    npm run dev
+    ```
+
+    El sitio estará disponible en `http://localhost:4321`.
+
+## 📜 Scripts Disponibles
+
+| Comando | Acción |
+| :--- | :--- |
+| `npm run dev` | Inicia el servidor de desarrollo local. |
+| `npm run build` | Compila el sitio para producción en la carpeta `./dist/`. |
+| `npm run preview` | Previsualiza la versión compilada (build) localmente. |
+
+## ✨ Características Clave
+
+- **Arquitectura de Islas**: Hidratación selectiva de componentes React para máxima velocidad.
+- **Autenticación Segura**: Sistema de login integrado.
+- **Cumplimiento Legal**: Páginas pre-configuradas para privacidad, cookies y aviso legal.
+- **Estética Visual**: Diseño cuidado con enfoque en la usabilidad y la estética.
+
+---
+
+> _Hecho con ❤️ para amar el proceso._
