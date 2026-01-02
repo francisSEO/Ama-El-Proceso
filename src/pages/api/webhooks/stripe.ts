@@ -47,7 +47,7 @@ export const POST: APIRoute = async ({ request }) => {
             // y asegúrate de que el 'from' sea un dominio verificado en Resend (o use onboarding@resend.dev para pruebas)
             await resend.emails.send({
                 from: 'Ama el Proceso <onboarding@resend.dev>',
-                to: ['franc@francis.seo'], // Pongo un placeholder, el usuario debe cambiarlo
+                to: [import.meta.env.NOTIFICATION_EMAIL ?? 'amaelprocesomaria@gmail.com'], // Usa variable de entorno o fallback
                 subject: `💰 Nuevo pago de ${monto} ${moneda}`,
                 html: `
           <h1>¡Nuevo Pedido Completado!</h1>
