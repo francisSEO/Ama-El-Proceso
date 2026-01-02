@@ -34,11 +34,22 @@ export const POST: APIRoute = async ({ request }) => {
 
         // Manejar el evento
         if (event.type === 'checkout.session.completed') {
-            const session = event.data.object;
+            const session = event.data.object as Stripe.Checkout.Session;
 
             const emailCliente = session.customer_details?.email ?? 'Desconocido';
+            const telefonoCliente = session.customer_details?.phone ?? 'No proporcionado';
             const monto = session.amount_total ? (session.amount_total / 100).toFixed(2) : '0.00';
             const moneda = session.currency?.toUpperCase() ?? 'EUR';
+
+            // Generar links al dashboard de Stripe
+            const isLive = session.livemode;
+            const dashboardBase = isLive ? 'https://dashboard.stripe.com' : 'https://dashboard.stripe.com/test';
+
+            const customerId = typeof session.customer === 'string' ? session.customer : session.customer?.id;
+            const paymentIntentId = typeof session.payment_intent === 'string' ? session.payment_intent : session.payment_intent?.id;
+
+            const linkCliente = customerId ? `${dashboardBase}/customers/${customerId}` : null;
+            const linkTransaccion = paymentIntentId ? `${dashboardBase}/payments/${paymentIntentId}` : null;
 
             console.log(`💰 Pago recibido de ${emailCliente} por ${monto} ${moneda}`);
 
@@ -48,15 +59,23 @@ export const POST: APIRoute = async ({ request }) => {
             await resend.emails.send({
                 from: 'Ama el Proceso <onboarding@resend.dev>',
                 to: [import.meta.env.NOTIFICATION_EMAIL ?? 'amaelprocesomaria@gmail.com'], // Usa variable de entorno o fallback
-                subject: `💰 Nuevo pago de ${monto} ${moneda}`,
+                subject: `💰 Nuevo pago de ${monto} ${moneda} - ${emailCliente}`,
                 html: `
           <h1>¡Nuevo Pedido Completado!</h1>
           <p>Has recibido un nuevo pago en Stripe.</p>
           <ul>
-            <li><strong>Cliente:</strong> ${emailCliente}</li>
+            <li><strong>Cliente (Email):</strong> ${emailCliente}</li>
+            <li><strong>Teléfono:</strong> ${telefonoCliente}</li>
             <li><strong>Monto:</strong> ${monto} ${moneda}</li>
             <li><strong>ID Sesión:</strong> ${session.id}</li>
           </ul>
+          
+          <p><strong>Enlaces rápidos:</strong></p>
+          <ul>
+            ${linkCliente ? `<li><a href="${linkCliente}">Ver Cliente en Stripe</a></li>` : ''}
+            ${linkTransaccion ? `<li><a href="${linkTransaccion}">Ver Transacción en Stripe</a></li>` : ''}
+          </ul>
+
           <p>Revisa tu dashboard de Stripe para más detalles.</p>
         `,
             });
